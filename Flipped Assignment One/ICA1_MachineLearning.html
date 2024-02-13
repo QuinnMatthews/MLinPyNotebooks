@@ -15140,18 +15140,22 @@ model intercept is 0.0
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># use this box to predict the classification output</span>
 <span class="n">y_regression</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="c1"># Calculate alpha</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="n">y_regression</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1">#TODO: Is there a better way to calculate alpha?</span>
+<span class="c1"># Find the precentage of 1s in the target</span>
+<span class="n">percentage_1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Percentage of 1s in the target:'</span><span class="p">,</span> <span class="n">percentage_1</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">'%'</span><span class="p">)</span>
+<span class="n">percentage_0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">percentage_1</span>
+
+<span class="c1"># Sort the predictions</span>
+<span class="n">y_reg_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">y_regression</span><span class="p">)</span>
+
+<span class="c1"># Find the value that separates the 1s from the 0s</span>
+<span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_reg_sorted</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">percentage_0</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">y_reg_sorted</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'alpha:'</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
 
-<span class="c1"># Calculate the classification</span>
+<span class="c1"># Calculate the classification </span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_regression</span><span class="o">&gt;</span><span class="n">alpha</span>
-
-<span class="c1"># write your code here to calculate the accuracy of the model</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">y_pred</span><span class="o">==</span><span class="n">y</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-
-
-
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Percentage accuracy:'</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="s1">'%'</span><span class="p">)</span>
 </pre></div>
 
@@ -15174,8 +15178,9 @@ model intercept is 0.0
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>alpha: 0.33333333333333287
-Percentage accuracy: 80.66666666666666 %
+<pre>Percentage of 1s in the target: 33.33333333333333 %
+alpha: 0.5206020028016896
+Percentage accuracy: 94.0 %
 </pre>
 </div>
 </div>
