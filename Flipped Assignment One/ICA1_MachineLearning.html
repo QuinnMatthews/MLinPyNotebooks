@@ -15071,7 +15071,7 @@ new number of classes: 2
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">)),</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">target</span>
 
-<span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">'model coefficients are:'</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'model intercept is'</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
@@ -15096,8 +15096,8 @@ new number of classes: 2
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>model coefficients are: [-0.69528186 -0.04587608  0.20276839  0.00398791  0.55177932]
-model intercept is 0.0
+<pre>model coefficients are: [ 0.         -0.04587608  0.20276839  0.00398791  0.55177932]
+model intercept is -0.6952818633256028
 </pre>
 </div>
 </div>
@@ -15179,7 +15179,7 @@ model intercept is 0.0
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Percentage of 1s in the target: 33.33333333333333 %
-alpha: 0.5206020028016896
+alpha: 0.5206020028016898
 Percentage accuracy: 94.0 %
 </pre>
 </div>
